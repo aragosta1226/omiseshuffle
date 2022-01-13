@@ -75,15 +75,17 @@
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);  
-        
+ 
         $("#send").on("click", function () {
+            console.log($("#letsgo").text());
             const data = {
-                name : $("#letsgo").val(),
+                name : $("#letsgo").text(),
                 time : serverTimestamp(),
             };
+            console.log(data)
             addDoc(collection(db, "omise"), data);
             $("#letsgo").val("");
-            // console.log(letsgo);
+            // console.log(addDoc);
         });
 
         const q = query(collection(db, "omise"), orderBy("time", "desc"));
@@ -100,11 +102,11 @@
             });
             // console.log(dataArray);
             const tagArray = [];
-            dataArray.forEach(function(data) {
+            dataArray.forEach(function (data) {
                 // console.log(data);
                 tagArray.push(`
                 <li id = "${data.id}">
-                    <p>${data.data.name} at ${convertTimestampToDatetime(data.data.time.seconds)}</p>
+                    <p>${convertTimestampToDatetime(data.data.time)} に ${data.data.name} へ行ったよ。 </p>
                 </li>
                 `);
             });

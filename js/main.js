@@ -40,8 +40,8 @@ function convertTimestampToDatetime(timestamp) {
     const d = _d.getDate().toString().padStart(2, "0");
     const H = _d.getHours().toString().padStart(2, "0");
     const i = _d.getMinutes().toString().padStart(2, "0");
-    const s = _d.getSeconds().toString().padStart(2, "0");
-    return `${Y}/${m}/${d} ${H}:${i}:${s}`;
+    // const s = _d.getSeconds().toString().padStart(2, "0");
+    return `${Y}年 ${m}月 ${d}日 ${H}時${i}分`;
 }
 
 function omiseList() {
@@ -51,7 +51,7 @@ function omiseList() {
     // console.log(li);
     li.className = "omiselist"
     // console.log(li.className);
-    li.textContent = `お店：${omise}`
+    li.textContent = `${omise}`
     // console.log(li.textContent);
     const omisekouho = document.getElementById("omise");
     // console.log(omisekouho);
@@ -84,7 +84,7 @@ function omiseShuffle(){
     // console.log(test1==test2)
     if(shuffledOmiseList == trap) {
     // console.log("naka")
-    document.getElementById("letsgo").innerHTML="虫料理"
+    document.getElementById("letsgo").innerHTML="元祖長浜"
     }else if(shuffledOmiseList !== trap){
     // console.log(shuffledOmiseList)
     // let afterProcessing = document.getElementById("afterProcessing")
