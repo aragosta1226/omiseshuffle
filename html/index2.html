@@ -17,16 +17,16 @@
         <section>
             <h2>今日のお店は…</h2>
             <ul >
-                <li id="letsgo"></li>
+                <li class="today" id="letsgo"></li>
             </ul>
             <button type="button" id="send">思い出</button>
         </section>
 
-        <!-- お店のリスト入力する場所 -->
+        <!-- お店のリストを入力する場所 -->
         <section>
             <h2>お店リスト</h2>
             <input type="text" id="list">
-            <input type="button" onclick="omiseList()" value="追加">
+            <input type="button" id="add" onclick="omiseList()" value="追加">
             <!-- <textarea name="list" id="beforeProcessing" cols="30" rows="10"></textarea> -->
 
         </section>
@@ -40,7 +40,7 @@
 
         <!-- シャッフルボタン -->
         <section>
-            <input type="button" onclick="omiseShuffle()" value="シャッフル">
+            <input type="button" id="suffle" onclick="omiseShuffle()" value="シャッフル">
         </section>
         
         <!-- 過去の行ったお店の出力場所 -->
@@ -82,7 +82,7 @@
                 name : $("#letsgo").text(),
                 time : serverTimestamp(),
             };
-            console.log(data)
+            // console.log(data)
             addDoc(collection(db, "omise"), data);
             $("#letsgo").val("");
             // console.log(addDoc);
@@ -113,7 +113,45 @@
             $("#output").html(tagArray);
             // console.log(tagArray);
         });
+
+        // エンターキーで思い出ボタンを押す処理
+        // $("#send").on("keydown", function (e) {
+        // if (e.keyCode === 13) {
+        //     const data = {
+        //     name: $("#letsgo").text(),
+        //     time: serverTimestamp(),
+        //     };
+        //     addDoc(collection(db, "omise"), data);
+        //     $("#letsgo").val("");
+        // }
+        // });
+
+        // $("#add").on("keydown", function (e) {
+        // if (e.keyCode === 13) {
+        //     const data = {
+        //     name: $("#omise").text(),
+        //     // time: serverTimestamp(),
+        //     };
+        //     addDoc(collection(db, "omise"), data);
+        //     $("#omise").val("");
+        // }
+        // });
+
+        // $("#suffle").on("keydown", function (e) {
+        // if (e.keyCode === 13) {
+        //     const data = {
+        //     name: $("#letsgo").text(),
+        //     time: serverTimestamp(),
+        //     };
+        //     addDoc(collection(db, "omise"), data);
+        //     $("#letsgo").val("");
+        // }
+        // });
+
       </script>
+    <audio loop="loop" autoplay="autoplay" > 
+        <source type="audio/mpeg" src="../music/LEX - なんでも言っちゃって (feat. JP THE WAVY) .mp3">
+    </audio>
 </body>
 <script src="../js/main.js"></script>
 </html>

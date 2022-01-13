@@ -84,7 +84,7 @@ function omiseShuffle(){
     // console.log(test1==test2)
     if(shuffledOmiseList == trap) {
     // console.log("naka")
-    document.getElementById("letsgo").innerHTML="元祖長浜"
+    document.getElementById("letsgo").innerHTML="焼肉(大東園)"
     }else if(shuffledOmiseList !== trap){
     // console.log(shuffledOmiseList)
     // let afterProcessing = document.getElementById("afterProcessing")
