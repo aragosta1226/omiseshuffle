@@ -17,3 +17,4 @@
 - ハマりポイントは、Firestoreにデータが上がらなかった事です。
 
 ## URL
+https://aragosta1226.github.io/omiseshuffle/html/index2.html
