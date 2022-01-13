@@ -76,7 +76,7 @@
         const db = getFirestore(app);  
  
         $("#send").on("click", function () {
-            console.log($("#letsgo").text());
+            // console.log($("#letsgo").text());
             const data = {
                 name : $("#letsgo").text(),
                 time : serverTimestamp(),
@@ -99,7 +99,7 @@
                 };
                 dataArray.push(data);
             });
-            console.log(dataArray);
+            // console.log(dataArray);
             const tagArray = [];
             dataArray.forEach(function (data) {
                 // console.log(data);
@@ -108,7 +108,7 @@
                     <p>${convertTimestampToDatetime(data.data.time.second)} に ${data.data.name} へ行ったよ。 </p>
                 </li>
                 `);
-                console.log(data);
+                // console.log(data);
             });
             $("#output").html(tagArray);
             // console.log(tagArray);
