@@ -35,11 +35,18 @@
 
 function convertTimestampToDatetime(timestamp) {
     const _d = timestamp ? new Date(timestamp * 1000) : new Date();
+    console.log(timestamp);
+    console.log(_d);
     const Y = _d.getFullYear();
+    console.log(Y);
     const m = (_d.getMonth() + 1).toString().padStart(2, "0");
+    console.log(m);
     const d = _d.getDate().toString().padStart(2, "0");
+    console.log(d);
     const H = _d.getHours().toString().padStart(2, "0");
+    console.log(H);
     const i = _d.getMinutes().toString().padStart(2, "0");
+    console.log(i);
     // const s = _d.getSeconds().toString().padStart(2, "0");
     return `${Y}年 ${m}月 ${d}日 ${H}時${i}分`;
 }

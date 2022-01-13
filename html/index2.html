@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>お店シャッフル</title>
     <link rel="stylesheet" href="../css/main.css">
 
 </head>
@@ -42,7 +42,7 @@
         </section>
         
         <!-- 過去の行ったお店の出力場所 -->
-        <ul id = "output"></ul>
+        <ul id="output" class="kako"></ul>
     </main>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="module">
@@ -98,15 +98,16 @@
                 };
                 dataArray.push(data);
             });
-            // console.log(dataArray);
+            console.log(dataArray);
             const tagArray = [];
             dataArray.forEach(function (data) {
                 // console.log(data);
                 tagArray.push(`
                 <li id = "${data.id}">
-                    <p>${convertTimestampToDatetime(data.data.time)} に ${data.data.name} へ行ったよ。 </p>
+                    <p>${convertTimestampToDatetime(data.data.time.second)} に ${data.data.name} へ行ったよ。 </p>
                 </li>
                 `);
+                console.log(data);
             });
             $("#output").html(tagArray);
             // console.log(tagArray);
