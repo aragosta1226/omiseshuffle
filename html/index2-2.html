@@ -1,0 +1,115 @@
+<!-- <!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/main.css">
+    <title>musicsearch-app</title>
+</head>
+<body>
+
+<form>
+  <h1>Music Search</h1>
+  <fieldset>
+    <legend>入力画面</legend>
+    <div>name: <input type="text" id="name" /></div>
+    <div>text: <input type="text" id="text" /></div>
+    <div>
+      <button type="button" id="send">send</button>
+    </div>
+  </fieldset>
+</form>
+
+<ul id="output"></ul>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+  function convertTimestampToDatetime(timestamp) {
+    const _d = timestamp ? new Date(timestamp * 1000) : new Date();
+    const Y = _d.getFullYear();
+    const m = (_d.getMonth() + 1).toString().padStart(2, '0');
+    const d = _d.getDate().toString().padStart(2, '0');
+    const H = _d.getHours().toString().padStart(2, '0');
+    const i = _d.getMinutes().toString().padStart(2, '0');
+    const s = _d.getSeconds().toString().padStart(2, '0');
+    return `${Y}/${m}/${d} ${H}:${i}:${s}`;
+  }
+</script>
+
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.2/firebase-app.js";
+  import {
+    getFirestore,
+    collection,
+    addDoc,
+    serverTimestamp,
+    onSnapshot,
+    orderBy,
+    query,
+  } from "https://www.gstatic.com/firebasejs/9.6.2/firebase-firestore.js";
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+  apiKey: "AIzaSyAtqljNKJ08y6rk3jdczAxzBzlC_jZYYpw",
+  authDomain: "musicsearch-app.firebaseapp.com",
+  projectId: "musicsearch-app",
+  storageBucket: "musicsearch-app.appspot.com",
+  messagingSenderId: "1078788665897",
+  appId: "1:1078788665897:web:5694bbd39368d69a1ae238"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+  $("#send").on("click", function () {
+    const data = {
+      name: $("#name").val(),
+      text: $("#text").val(),
+      time: serverTimestamp(),
+    };
+    addDoc(collection(db, "chat"), data);
+    $("#text").val("");
+  });
+
+  const q = query(collection(db, "chat"), orderBy("time", "desc"));
+  onSnapshot(q, (querySnapshot) => {
+    const dataArray = [];
+    querySnapshot.docs.forEach(function(doc) {
+      const data = {
+        id: doc.id,
+        data: doc.data(),
+      };
+      dataArray.push(data);
+    });
+    const tagArray = [];
+    dataArray.forEach(function(data) {
+      tagArray.push(`
+      <li id="${data.id}">
+        <p>${data.data.name} at ${convertTimestampToDatetime(data.data.time.seconds)}</p>
+        <p>${data.data.text}</p>
+        </li>
+        `);
+    });
+    $("#output").html(tagArray);
+  })
+  const settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "https://shazam.p.rapidapi.com/songs/list-artist-top-tracks?id=40008598&locale=en-US",
+    "method": "GET",
+    "headers": {
+      "x-rapidapi-host": "shazam.p.rapidapi.com",
+      "x-rapidapi-key": "f8c51618d1msh2bef172fb75d496p1f408djsn494fe1c2d302"
+    }
+  };
+
+  $.ajax(settings).done(function (response) {
+    console.log(response);
+  });
+  </script>
+      
+    
+</body>
+</html> -->

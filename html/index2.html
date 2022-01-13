@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/main.css">
+
+</head>
+<body>
+    <main>
+        <!-- タイトル -->
+        <h1>どこ行こうかな？</h1>
+
+        <!-- 結果の出力場所 -->
+        <section>
+            <h2>今日のお店は…</h2>
+            <ul >
+                <li id="letsgo"></li>
+            </ul>
+            <button type="button" id="send">思い出</button>
+        </section>
+
+        <!-- お店のリスト入力する場所 -->
+        <section>
+            <h2>お店リスト</h2>
+            <input type="text" id="list">
+            <input type="button" onclick="omiseList()" value="追加">
+            <!-- <textarea name="list" id="beforeProcessing" cols="30" rows="10"></textarea> -->
+
+        </section>
+
+        <!-- お店のリスト -->
+        <section>
+            <div id="omise">
+
+            </div>
+        </section>
+
+        <!-- シャッフルボタン -->
+        <section>
+            <input type="button" onclick="omiseShuffle()" value="シャッフル">
+        </section>
+        
+        <!-- 過去の行ったお店の出力場所 -->
+        <ul id = "output"></ul>
+    </main>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.2/firebase-app.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+        import {
+            getFirestore,
+            collection,
+            addDoc,
+            serverTimestamp,
+            onSnapshot,
+            orderBy,
+            query,
+        } from "https://www.gstatic.com/firebasejs/9.6.2/firebase-firestore.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+          apiKey: "",
+          authDomain: "omiseshuffle.firebaseapp.com",
+          projectId: "omiseshuffle",
+          storageBucket: "omiseshuffle.appspot.com",
+          messagingSenderId: "743013516271",
+          appId: "1:743013516271:web:babca3a63cb18550202c1a"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);  
+        
+        $("#send").on("click", function () {
+            const data = {
+                name : $("#letsgo").val(),
+                time : serverTimestamp(),
+            };
+            addDoc(collection(db, "omise"), data);
+            $("#letsgo").val("");
+            // console.log(letsgo);
+        });
+
+        const q = query(collection(db, "omise"), orderBy("time", "desc"));
+
+        onSnapshot(q, (querySnapshot) => {
+            // console.log(querySnapshot.docs);
+            const dataArray = [];
+            querySnapshot.docs.forEach(function(doc) {
+                const data = {
+                    id: doc.id,
+                    data: doc.data(),
+                };
+                dataArray.push(data);
+            });
+            // console.log(dataArray);
+            const tagArray = [];
+            dataArray.forEach(function(data) {
+                // console.log(data);
+                tagArray.push(`
+                <li id = "${data.id}">
+                    <p>${data.data.name} at ${convertTimestampToDatetime(data.data.time.seconds)}</p>
+                </li>
+                `);
+            });
+            $("#output").html(tagArray);
+            // console.log(tagArray);
+        });
+      </script>
+</body>
+<script src="../js/main.js"></script>
+</html>
