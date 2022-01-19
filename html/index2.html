@@ -102,10 +102,10 @@
             // console.log(dataArray);
             const tagArray = [];
             dataArray.forEach(function (data) {
-                // console.log(data);
+                console.log(data);
                 tagArray.push(`
                 <li id = "${data.id}">
-                    <p>${convertTimestampToDatetime(data.data.time.second)} に ${data.data.name} へ行ったよ。 </p>
+                    <p>${convertTimestampToDatetime(data.data.time.seconds)} に ${data.data.name} へ行ったよ。 </p>
                 </li>
                 `);
                 // console.log(data);

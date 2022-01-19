@@ -5,6 +5,7 @@ body{
     /* font-size: 32px; */
     /* background-image: url(../images/main.jpg); */
     font-family: Hiragino Sans;
+    background-color: #ffb61a;
 }
 
 main {
@@ -60,6 +61,40 @@ ul {
     text-shadow:1px 0 4px rgba(255,215,0,0.66), 0 1px 4px rgba(255,215,0,0.66), -1px 0 4px rgba(255,215,0,0.66), 0 -1px 4px rgba(255,215,0,0.66);
 }
 
+#send{
+    display: block;
+	font-size: 18px;
+	width: 200px;
+	height: 54px;
+	color: #fff;
+	background-color: #ffb61a;
+	margin: 0 auto;
+	padding: 10px 0;
+	text-align: center;
+	border: 1px solid #4a4a4a;
+	border-radius: 5px;
+	box-shadow: 0 3px 6px rgba(0,0,0,0.7);
+}
+
+#suffle {
+    display: block;
+	font-size: 18px;
+	width: 200px;
+	height: 54px;
+	color: #fff;
+	background-color: #ffb61a;
+	margin: 0 auto;
+	padding: 10px 0;
+	text-align: center;
+	border: 1px solid #4a4a4a;
+	border-radius: 5px;
+	box-shadow: 0 3px 6px rgba(0,0,0,0.7);
+}
+
+/* #send,#suffle:hover {
+    opacity: 0.7px;
+} */
+
 .omisetachi {
     color: #fff;
     text-shadow: 1px 1px 0 #000, -1px 1px 0 #000, 1px -1px 0 #000, -1px -1px 0 #000;
@@ -73,4 +108,22 @@ ul {
 .kako {
     color: #fff;
     text-shadow: 1px 1px 0 #000, -1px 1px 0 #000, 1px -1px 0 #000, -1px -1px 0 #000;
+}
+
+#list {
+    width: 200px;
+    height: 30px;
+    font-size: 20px;
+}
+
+@media screen and (max-width:480px) {
+    main {
+        width: 100%;
+        display: block;
+    }
+   #output.kako {
+       width: 100%;
+       display: block;
+       font-size: 20px;
+   }
 }
